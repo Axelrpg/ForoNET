@@ -7,7 +7,7 @@ namespace Foro.Pages
 {
     public class TopicsModel : PageModel
     {
-        List<Topic> topics = new List<Topic>();
+        public List<Topic> topics = new List<Topic>();
         public void OnGet()
         {
             listarTopics();

@@ -30,7 +30,7 @@ namespace Foro.Pages
                 {
                     if (reader.Read())
                     {
-                        ViewData["Mensaje"] = "Si existe el usuario";
+                        Response.Redirect("Topics");
                     }
                     else
                     {
