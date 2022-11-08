@@ -13,25 +13,25 @@ namespace Foro.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string user, string pass)
         {
-            login();
+            login(user, pass);
         }
 
-        private void login()
+        private void login(string user, string pass)
         {
             using (MySqlConnection c = new MySqlConnection("Server=localhost;Database=foro;Uid=root;Password="))
             {
                 MySqlCommand cmd = new MySqlCommand();
                 c.Open();
                 cmd.Connection = c;
-                cmd.CommandText = "SELECT * FROM users WHERE username='admin' AND password='123'";
+                cmd.CommandText = $"SELECT * FROM users WHERE username='{user}' AND password='{pass}'";
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         ViewData["Mensaje"] = "Si existe el usuario";
-                    } 
+                    }
                     else
                     {
                         ViewData["Mensaje"] = "Error, no se encontro al usuario";
